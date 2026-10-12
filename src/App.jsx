@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Routes, Route, useLocation, Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
 import Navbar from './assets/components/Navbar.jsx'
 import Footer from './assets/components/Footer.jsx'
 import PageTransition from './assets/components/PageTransition.jsx'
@@ -26,6 +26,9 @@ const JoinUs = lazy(() => import('./pages/JoinUs/JoinUs.jsx'))
 const StoreThankYou = lazy(() => import('./pages/ThankStore.jsx'))
 const TransactionFailed = lazy(() => import('./pages/TransactionFailed.jsx'))
 const LegalPage = lazy(() => import('./pages/Legal/LegalPage.jsx'))
+const Adhyanamrita = lazy(() => import('./pages/Adhyananamrita/Adhananamrita.jsx'))
+const Form = lazy(() => import('./pages/Adhyananamrita/Form.jsx'))
+
 
 function PageLoader() {
   return <div className="flex min-h-[40vh] items-center justify-center text-sm text-stone-500">Loading...</div>
@@ -80,6 +83,8 @@ function App() {
               <Route path="/player/:courseId" element={<PageTransition><Player /></PageTransition>} />
               <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
               <Route path="/join" element={<PageTransition><JoinUs /></PageTransition>} />
+              <Route path="/adhyananamrita" element={<PageTransition><Adhyanamrita /></PageTransition>} />
+              <Route path="/adhyananamrita/form" element={<PageTransition><Form /></PageTransition>} />
               <Route path="*" element={<PageTransition><PageNotFound /></PageTransition>} />
 
               <Route
@@ -95,14 +100,14 @@ function App() {
 
       <AnimatePresence>
         {showEventPopup && event && (
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             className="event-popup fixed inset-0 z-50 flex items-center justify-center bg-[#0a1714]/65 p-4 backdrop-blur-sm"
           >
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: 18, scale: 0.93, rotateX: -8 }}
               animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
               exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -153,8 +158,8 @@ function App() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
 
